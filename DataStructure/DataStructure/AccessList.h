@@ -7,8 +7,7 @@ public:
 	AccessList();
 	~AccessList();
 	void MakeEmptyList();
-	void addNode(Person data);
-	void addSortedNode(Person data);
+	void addSortedNode(Person data, int* counter);
 	ListNode* getHead();
 	ListNode* getTail();
 	ListNode* createNode(Person data);

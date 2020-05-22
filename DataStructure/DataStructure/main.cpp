@@ -26,7 +26,8 @@ void main()
 	}
 	int k;
 	cin >> k;
-	naivePrint(arr, coupleNum, k);
+	int counter = naivePrint(arr, coupleNum, k);
+	cout << endl << "NaivePrint: " << counter << " compraison" << endl;
 	system("pause");
 }
 
@@ -36,11 +37,9 @@ int naivePrint(Person* arr, int n, int k)
 	int counter = 0;
 	for (int i = 0; i < n; i++)
 	{
+		counter++;
 		if (arr[i].getId() < k)
-		{
-			accessList.addSortedNode(arr[i]);
-			counter++;
-		}
+			accessList.addSortedNode(arr[i], &counter);
 	}
 	accessList.printAccessList();
 	return counter;
