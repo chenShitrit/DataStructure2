@@ -2,9 +2,11 @@
 
 
 
-ListNode::ListNode() //need to initialize person
+ListNode::ListNode(Person data) //to check
 {
-	m_prev = nullptr;
+	m_data.setId(data.getId());
+	m_data.setFirstName(data.getFirstName());
+	m_data.setLastName(data.getLastName());
 	m_next = nullptr;
 }
 
@@ -20,16 +22,6 @@ void ListNode::setNext(ListNode* next)
 ListNode* ListNode::getNext()
 {
 	return m_next;
-}
-
-ListNode* ListNode::getPrev()
-{
-	return m_prev;
-}
-
-void ListNode::setPrev(ListNode* prev)
-{
-	m_prev = prev;
 }
 
 Person ListNode::getData()

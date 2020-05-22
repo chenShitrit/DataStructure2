@@ -9,7 +9,7 @@ using namespace std;
 #define MAX_SIZE 128
 int naivePrint(Person* arr, int n, int k);
 
-int main()
+void main()
 {
 	int id, coupleNum;
 	char* firstName = new char[MAX_SIZE];
@@ -24,8 +24,10 @@ int main()
 		arr[i].setFirstName(firstName);
 		arr[i].setLastName(firstName);
 	}
-
-	return 0;
+	int k;
+	cin >> k;
+	naivePrint(arr, coupleNum, k);
+	system("pause");
 }
 
 int naivePrint(Person* arr, int n, int k)

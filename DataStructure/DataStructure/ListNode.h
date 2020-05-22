@@ -4,12 +4,10 @@
 class ListNode
 {
 public:
-	ListNode();
+	ListNode(Person data);
 	~ListNode();
 	void setNext(ListNode* next);
 	ListNode* getNext();
-	ListNode* getPrev();
-	void setPrev(ListNode* prev);
 	Person getData();
 	void setPerson(Person person);
 

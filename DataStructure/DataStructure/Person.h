@@ -10,6 +10,8 @@ public:
 	void setId(int id);
 	void setFirstName(char* firstName);
 	void setLastName(char* lastName);
+	char* getLastName();
+	char* getFirstName();
 
 private:
 	int m_id;
