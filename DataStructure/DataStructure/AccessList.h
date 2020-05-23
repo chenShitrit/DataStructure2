@@ -7,10 +7,10 @@ public:
 	AccessList();
 	~AccessList();
 	void MakeEmptyList();
-	void addSortedNode(Person data, int* counter);
+	void addSortedNode(Person& data, int* counter);
 	ListNode* getHead();
 	ListNode* getTail();
-	ListNode* createNode(Person data);
+	ListNode* createNode(Person& data);
 	void printAccessList();
 
 private:

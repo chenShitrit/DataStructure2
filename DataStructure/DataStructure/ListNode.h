@@ -4,12 +4,11 @@
 class ListNode
 {
 public:
-	ListNode(Person data);
-	~ListNode();
+	ListNode(Person& data);
 	void setNext(ListNode* next);
 	ListNode* getNext();
 	Person getData();
-	void setPerson(Person person);
+	void setPerson(Person& person);
 
 private:
 	Person m_data;

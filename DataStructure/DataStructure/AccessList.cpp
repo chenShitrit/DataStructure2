@@ -12,6 +12,15 @@ AccessList::AccessList()
 
 AccessList::~AccessList()
 {
+	ListNode *p, *tmp;
+	p = m_head;
+	while (p != m_tail)
+	{
+		tmp = p;
+		p = p->getNext();
+		delete tmp;
+	}
+	delete m_tail;
 }
 
 ListNode* AccessList::getHead()
@@ -34,7 +43,7 @@ void AccessList::MakeEmptyList()
 	m_tail->setNext(nullptr);
 }
 
-void AccessList::addSortedNode(Person data, int* counter) //to add if the node exists
+void AccessList::addSortedNode(Person& data, int* counter) //to add if the node exists
 {
 	ListNode* curr = m_head;
 	ListNode* newNode = createNode(data);
@@ -47,7 +56,7 @@ void AccessList::addSortedNode(Person data, int* counter) //to add if the node e
 	curr->setNext(newNode);
 }
 
-ListNode* AccessList::createNode(Person data)
+ListNode* AccessList::createNode(Person& data)
 {
 	ListNode* newNode = new ListNode(data);
 	return newNode;
@@ -58,9 +67,8 @@ void AccessList::printAccessList()
 	ListNode* curr = m_head->getNext();
 	while (curr != m_tail)
 	{
-		cout << curr->getData().getId();
+		cout << curr->getData();
 		cout << endl;
 		curr = curr->getNext();
 	}
-
 }

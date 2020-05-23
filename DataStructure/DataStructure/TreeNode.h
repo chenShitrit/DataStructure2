@@ -4,12 +4,11 @@
 class TreeNode
 {
 public:
-	TreeNode(Person data);
-	~TreeNode();
+	TreeNode(Person& data);
 	Person getData();
 	TreeNode* getLeft();
 	TreeNode* getRight();
-	void setData(Person data);
+	void setData(Person& data);
 	void setLeft(TreeNode* left);
 	void setRight(TreeNode* right);
 private:

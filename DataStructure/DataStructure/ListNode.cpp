@@ -1,18 +1,13 @@
 #include "ListNode.h"
 
 
-
-ListNode::ListNode(Person data) //to check
+//to check
+ListNode::ListNode(Person& data): m_data(data)
 {
-	m_data.setId(data.getId());
-	m_data.setFirstName(data.getFirstName());
-	m_data.setLastName(data.getLastName());
+	//m_data.setId(data.getId());
+	//m_data.setFirstName(data.getFirstName());
+	//m_data.setLastName(data.getLastName());
 	m_next = nullptr;
-}
-
-
-ListNode::~ListNode()
-{
 }
 
 void ListNode::setNext(ListNode* next)
@@ -29,7 +24,7 @@ Person ListNode::getData()
 	return m_data;
 }
 
-void ListNode::setPerson(Person person)
+void ListNode::setPerson(Person& person)
 {
 
 }

@@ -7,7 +7,12 @@ BST::BST()
 	m_root = nullptr;
 }
 
-bool BST::isEmpty(BST tree)
+TreeNode* BST::getRoot()
+{
+	return m_root;
+}
+
+bool BST::isEmpty(BST& tree)
 {
 	return (tree.m_root == nullptr);
 }
@@ -19,9 +24,10 @@ BST BST::makeEmpty()
 	return tree;
 }
 
-void BST::insertNode(Person data)
+int BST::insertNode(Person& data)
 {
-	if (findNode(data.getId()) == nullptr)
+	int counter = 0;
+	if (findNode(data.getId()) != nullptr)
 		cout << "Error, key already exists";
 	TreeNode* newNode = new TreeNode(data);
 	TreeNode* tmp = m_root;
@@ -30,6 +36,7 @@ void BST::insertNode(Person data)
 	while (tmp != nullptr)
 	{
 		parent = tmp;
+		counter++;
 		if (data.getId() < tmp->getData().getId())
 			tmp = tmp->getLeft();
 		else
@@ -37,14 +44,21 @@ void BST::insertNode(Person data)
 	}
 	if (parent == nullptr)
 		m_root = newNode;
-	else if (data.getId() < parent->getData().getId())
-		parent->setLeft(newNode);
 	else
-		parent->setRight(newNode);
+	{
+		counter++;
+		if (data.getId() < parent->getData().getId())
+			parent->setLeft(newNode);
+		else
+			parent->setRight(newNode);
+	}
+	return counter;
 }
 
 void BST::deleteNode(TreeNode* root, int id)
 {
+	TreeNode* toDelete = findNode(id);
+
 }
 
 TreeNode* BST::findNode(int key)
@@ -76,3 +90,4 @@ void BST::FreeTreeRec(TreeNode *t)
 		delete t;
 	}
 }
+

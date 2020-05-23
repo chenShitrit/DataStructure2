@@ -1,9 +1,8 @@
 #include "TreeNode.h"
 
 
-TreeNode::TreeNode(Person data)
+TreeNode::TreeNode(Person& data):m_data(data)
 {
-	m_data = data;
 	m_left = nullptr;
 	m_right = nullptr;
 }
@@ -34,11 +33,7 @@ void  TreeNode::setRight(TreeNode* right)
 	m_right = right;
 }
 
-void TreeNode::setData(Person data)
+void TreeNode::setData(Person& data)
 {
 	m_data = data;
-}
-
-TreeNode::~TreeNode()
-{
 }

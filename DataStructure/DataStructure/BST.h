@@ -6,12 +6,14 @@ class BST
 public:
 	BST();
 	~BST();
-	bool isEmpty(BST tree);
+	TreeNode* getRoot();
+	bool isEmpty(BST& tree);
 	BST makeEmpty();
-	void insertNode(Person data);
+	int insertNode(Person& data);
 	void deleteNode(TreeNode* root, int id);
 	TreeNode* findNode(int key);
 	void FreeTreeRec(TreeNode *t);
+
 
 private:
 	TreeNode* m_root;
