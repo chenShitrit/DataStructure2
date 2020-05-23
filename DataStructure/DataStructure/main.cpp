@@ -70,3 +70,14 @@ void inOrderPrintRec(TreeNode* t, int k)
 		inOrderPrintRec(t->getRight(), k);
 	}
 }
+
+int PrintBySort(Person* arr, int n, int k)
+{
+	//qsort(arr, n); //TBD
+	for (int i = 0; i < n; i++)
+	{
+		if (arr[i].getId() < k)
+			cout << arr[i].getId();
+	}
+	return n;
+}

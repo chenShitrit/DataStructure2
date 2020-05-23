@@ -11,7 +11,7 @@ public:
 	BST makeEmpty();
 	int insertNode(Person& data);
 	void deleteNode(TreeNode* root, int id);
-	TreeNode* findNode(int key);
+	TreeNode* findNode(int key, int* counter);
 	void FreeTreeRec(TreeNode *t);
 
 

@@ -33,7 +33,7 @@ ListNode* AccessList::getTail()
 	return m_tail;
 }
 
-//Creates a new emtpy list
+//Creates a new emtpy list with dummy head and dummy tail
 void AccessList::MakeEmptyList()
 {
 	Person p;
@@ -54,7 +54,10 @@ void AccessList::addSortedNode(Person& data, int* counter) //to add if the node 
 	}
 	(*counter)++;
 	if (curr->getNext()->getData().getId() == data.getId())
+	{
+		cout << "The node is already exist!\n";
 		return;
+	}
 	newNode->setNext(curr->getNext());
 	curr->setNext(newNode);
 }

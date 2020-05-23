@@ -27,8 +27,7 @@ BST BST::makeEmpty()
 int BST::insertNode(Person& data)
 {
 	int counter = 0;
-	counter++;
-	if (findNode(data.getId()) != nullptr)
+	if (findNode(data.getId(), &counter) != nullptr)
 		cout << "Error, key already exists";
 	TreeNode* newNode = new TreeNode(data);
 	TreeNode* tmp = m_root;
@@ -58,11 +57,12 @@ int BST::insertNode(Person& data)
 
 void BST::deleteNode(TreeNode* root, int id)
 {
-	TreeNode* toDelete = findNode(id);
+	int count = 0;
+	TreeNode* toDelete = findNode(id, &count);
 
 }
 
-TreeNode* BST::findNode(int key)
+TreeNode* BST::findNode(int key, int* counter)
 {
 	TreeNode* tmp = m_root;
 	while (tmp != nullptr)
@@ -74,6 +74,7 @@ TreeNode* BST::findNode(int key)
 		else
 			tmp = tmp->getRight();
 	}
+	(*counter)++;
 	return nullptr;
 }
 
