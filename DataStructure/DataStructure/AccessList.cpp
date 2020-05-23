@@ -52,6 +52,9 @@ void AccessList::addSortedNode(Person& data, int* counter) //to add if the node 
 		curr = curr->getNext();
 		(*counter)++;
 	}
+	(*counter)++;
+	if (curr->getNext()->getData().getId() == data.getId())
+		return;
 	newNode->setNext(curr->getNext());
 	curr->setNext(newNode);
 }
