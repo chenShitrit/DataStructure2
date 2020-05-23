@@ -11,6 +11,7 @@ public:
 	void insertNode(Person data);
 	void deleteNode(TreeNode* root, int id);
 	TreeNode* findNode(int key);
+	void FreeTreeRec(TreeNode *t);
 
 private:
 	TreeNode* m_root;

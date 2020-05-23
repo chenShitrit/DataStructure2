@@ -62,7 +62,17 @@ TreeNode* BST::findNode(int key)
 	return nullptr;
 }
 
-
 BST::~BST()
 {
+	FreeTreeRec(m_root);
+}
+
+void BST::FreeTreeRec(TreeNode *t)
+{
+	if (t != NULL)
+	{
+		FreeTreeRec(t->getLeft());
+		FreeTreeRec(t->getRight());
+		delete t;
+	}
 }
