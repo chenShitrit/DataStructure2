@@ -27,6 +27,7 @@ BST BST::makeEmpty()
 int BST::insertNode(Person& data)
 {
 	int counter = 0;
+	counter++;
 	if (findNode(data.getId()) != nullptr)
 		cout << "Error, key already exists";
 	TreeNode* newNode = new TreeNode(data);
