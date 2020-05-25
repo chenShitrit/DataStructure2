@@ -11,6 +11,10 @@ using namespace std;
 int naivePrint(Person* arr, int n, int k);
 int BSTPrint(Person* arr, int n, int k);
 void inOrderPrintRec(TreeNode* t, int k);
+int PrintBySort(Person* arr, int n, int k); 
+void swap(Person* a, Person* b);
+int quickSort(Person* arr, int low, int high);
+int partition(Person arr[], int low, int high, int* counter);
 
 void main()
 {
@@ -73,11 +77,52 @@ void inOrderPrintRec(TreeNode* t, int k)
 
 int PrintBySort(Person* arr, int n, int k)
 {
-	//qsort(arr, n); //TBD
+	int counter = 0;
+	counter += quickSort(arr, 0, n - 1);
 	for (int i = 0; i < n; i++)
 	{
 		if (arr[i].getId() < k)
-			cout << arr[i].getId();
+		{
+			cout << arr[i].getId() << endl;
+		}
+		counter++;
 	}
-	return n;
+	return counter;
+}
+
+void swap(Person* a, Person* b)
+{
+	Person t = *a;
+	*a = *b;
+	*b = t;
+}
+
+int partition(Person arr[], int low, int high, int* counter)
+{
+	int pivot = arr[high].getId();
+	int i = (low - 1);
+	for (int j = low; j <= high - 1; j++)
+	{
+		if (arr[j].getId() <= pivot)
+		{
+			i++;
+			swap(&arr[i], &arr[j]);
+		}
+		(*counter)++;
+	}
+	swap(&arr[i + 1], &arr[high]);
+	return (i + 1);
+}
+
+int quickSort(Person* arr, int low, int high)
+{
+	int counter = 0;
+	if (low < high)
+	{
+		int pi = partition(arr, low, high, &counter);
+		quickSort(arr, low, pi - 1);
+		quickSort(arr, pi + 1, high);
+		counter++;
+	}
+	return counter;
 }
