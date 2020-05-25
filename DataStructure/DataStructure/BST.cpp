@@ -57,10 +57,73 @@ int BST::insertNode(Person& data)
 
 void BST::deleteNode(TreeNode* root, int id)
 {
+	TreeNode *toDelete, *parent, *max;
 	int count = 0;
-	TreeNode* toDelete = findNode(id, &count);
-
+	bool leftChild = true;
+	toDelete = findNode(id, &count);
+	parent = findParent(id);
+	if (parent->getData().getId() < id)
+		leftChild = false;
+	if (toDelete->getLeft() == nullptr && toDelete->getRight() == nullptr)// if leaf
+	{
+		if (leftChild)
+			parent->setLeft(nullptr);
+		else
+			parent->setRight(nullptr);
+	}
+	else if (toDelete->getLeft() == nullptr)// has one chiled from left
+	{
+		if (leftChild)
+			parent->setLeft(toDelete->getLeft());
+		else
+			parent->setRight(toDelete->getLeft());
+	}
+	else if (toDelete->getRight() == nullptr)// has one chiled from right
+	{
+		if (leftChild)
+			parent->setLeft(toDelete->getRight());
+		else
+			parent->setRight(toDelete->getRight());
+	}
+	else // has 2 chileds
+	{
+		max = findMax(toDelete->getLeft());
+		if (leftChild)
+			parent->setLeft(max);
+		else
+			parent->setRight(max);
+	}
+	delete toDelete;
 }
+
+TreeNode* BST::findMax(TreeNode* t)
+{
+	while (t->getRight() != nullptr)
+	{
+		t = t->getRight();
+	}
+	return t;
+}
+
+TreeNode* BST::findParent(int key)
+{
+	TreeNode* parent = nullptr;
+	TreeNode* tmp = m_root;
+	if (tmp->getData().getId() == key) // if the key is in the root
+		return nullptr;
+	while (tmp != nullptr)
+	{
+		if (tmp->getData().getId() == key)
+			return parent;
+		parent = tmp;
+		if (key < tmp->getData().getId())
+			tmp = tmp->getRight();
+		else
+			tmp = tmp->getRight();
+	}
+	return nullptr;
+}
+
 
 TreeNode* BST::findNode(int key, int* counter)
 {

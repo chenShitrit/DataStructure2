@@ -12,6 +12,8 @@ public:
 	int insertNode(Person& data);
 	void deleteNode(TreeNode* root, int id);
 	TreeNode* findNode(int key, int* counter);
+	TreeNode* findParent(int key);
+	TreeNode* findMax(TreeNode* t);
 	void FreeTreeRec(TreeNode *t);
 
 
