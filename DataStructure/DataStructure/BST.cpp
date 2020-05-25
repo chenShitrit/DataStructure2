@@ -95,10 +95,13 @@ void BST::replaceChiledNode(TreeNode* parent, bool isLeft, TreeNode* replaceWith
 
 TreeNode* BST::findMax(TreeNode* t)
 {
+	TreeNode* parent;
 	while (t->getRight() != nullptr)
 	{
+		parent = t;
 		t = t->getRight();
 	}
+	parent->setRight(t->getLeft);
 	return t;
 }
 
