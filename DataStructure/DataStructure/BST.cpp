@@ -81,6 +81,10 @@ void BST::deleteNode(TreeNode* root, int id)
 	{
 		max = findMax(toDelete->getLeft());
 		replaceChiledNode(parent, leftChild, max);
+		max->setLeft(toDelete->getLeft());
+		max->setRight(toDelete->getRight());
+		toDelete->setLeft(nullptr);
+		toDelete->setRight(nullptr);
 	}
 	delete toDelete;
 }
