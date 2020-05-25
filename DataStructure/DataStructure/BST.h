@@ -14,6 +14,7 @@ public:
 	TreeNode* findNode(int key, int* counter);
 	TreeNode* findParent(int key);
 	TreeNode* findMax(TreeNode* t);
+	void replaceChiledNode(TreeNode* parent, bool isLeft, TreeNode* replaceWith);
 	void FreeTreeRec(TreeNode *t);
 
 

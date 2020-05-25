@@ -1,6 +1,9 @@
 #include "BST.h"
 #include <iostream>
 using namespace std;
+#define RIGHT 1
+#define LEFT 2
+#define NONE 3
 
 BST::BST()
 {
@@ -64,36 +67,30 @@ void BST::deleteNode(TreeNode* root, int id)
 	parent = findParent(id);
 	if (parent->getData().getId() < id)
 		leftChild = false;
+
 	if (toDelete->getLeft() == nullptr && toDelete->getRight() == nullptr)// if leaf
-	{
-		if (leftChild)
-			parent->setLeft(nullptr);
-		else
-			parent->setRight(nullptr);
-	}
+		replaceChiledNode(parent, leftChild, nullptr);
+
 	else if (toDelete->getLeft() == nullptr)// has one chiled from left
-	{
-		if (leftChild)
-			parent->setLeft(toDelete->getLeft());
-		else
-			parent->setRight(toDelete->getLeft());
-	}
+		replaceChiledNode(parent, leftChild, toDelete->getLeft());
+
 	else if (toDelete->getRight() == nullptr)// has one chiled from right
-	{
-		if (leftChild)
-			parent->setLeft(toDelete->getRight());
-		else
-			parent->setRight(toDelete->getRight());
-	}
+		replaceChiledNode(parent, leftChild, toDelete->getRight());
+
 	else // has 2 chileds
 	{
 		max = findMax(toDelete->getLeft());
-		if (leftChild)
-			parent->setLeft(max);
-		else
-			parent->setRight(max);
+		replaceChiledNode(parent, leftChild, max);
 	}
 	delete toDelete;
+}
+
+void BST::replaceChiledNode(TreeNode* parent, bool isLeft, TreeNode* replaceWith)
+{
+	if (isLeft)
+		parent->setLeft(replaceWith);
+	else
+		parent->setRight(replaceWith);
 }
 
 TreeNode* BST::findMax(TreeNode* t)
