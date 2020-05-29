@@ -11,7 +11,7 @@ public:
 	BST makeEmpty();
 	int insertNode(Person& data);
 	void deleteNode(TreeNode* root, int id);
-	TreeNode* findNode(int key, int* counter);
+	TreeNode* findNode(int key);
 	TreeNode* findParent(int key);
 	TreeNode* findMax(TreeNode* t);
 	void replaceChiledNode(TreeNode* parent, bool isLeft, TreeNode* replaceWith);

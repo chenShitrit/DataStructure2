@@ -69,9 +69,8 @@ int BST::insertNode(Person& data)
 void BST::deleteNode(TreeNode* root, int id)
 {
 	TreeNode *toDelete, *parent, *max;
-	int count = 0;
 	bool leftChild = true;
-	toDelete = findNode(id, &count);
+	toDelete = findNode(id);
 	parent = findParent(id);
 	if (parent->getData().getId() < id)
 		leftChild = false;
@@ -137,7 +136,7 @@ TreeNode* BST::findParent(int key)
 }
 
 
-TreeNode* BST::findNode(int key, int* counter)
+TreeNode* BST::findNode(int key)
 {
 	TreeNode* tmp = m_root;
 	while (tmp != nullptr)
@@ -149,7 +148,6 @@ TreeNode* BST::findNode(int key, int* counter)
 		else
 			tmp = tmp->getRight();
 	}
-	(*counter)++;
 	return nullptr;
 }
 
