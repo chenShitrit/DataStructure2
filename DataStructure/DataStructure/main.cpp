@@ -85,7 +85,7 @@ int PrintBySort(Person* arr, int n, int k)
 	{
 		if (arr[i].getId() < k)
 		{
-			cout << arr[i].getId() << endl;
+			cout << arr[i] << endl;
 		}
 		counter++;
 	}
