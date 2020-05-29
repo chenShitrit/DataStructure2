@@ -10,10 +10,10 @@ using namespace std;
 #define MAX_SIZE 128
 int naivePrint(Person* arr, int n, int k);
 int BSTPrint(Person* arr, int n, int k);
-void inOrderPrintRec(TreeNode* t, int k);
+void inOrderPrintRec(TreeNode* t, int k, int* counter);
 int PrintBySort(Person* arr, int n, int k); 
 void swap(Person* a, Person* b);
-int quickSort(Person* arr, int low, int high);
+void quickSort(Person* arr, int low, int high, int* counter);
 int partition(Person arr[], int low, int high, int* counter);
 
 void main()
@@ -34,6 +34,8 @@ void main()
 	cout << endl << "NaivePrint: " << counter << " compraison" << endl;
 	counter = BSTPrint(arr, coupleNum, k);
 	cout << endl << "BST Print: " << counter << " compraison" << endl;
+	counter = PrintBySort(arr, coupleNum, k);
+	cout << endl << "qSortPrint: " << counter << " compraison" << endl;
 }
 
 int naivePrint(Person* arr, int n, int k)
@@ -58,27 +60,27 @@ int BSTPrint(Person* arr, int n, int k)
 	{
 		counter += tree.insertNode(arr[i]);
 	}
-	inOrderPrintRec(tree.getRoot(), k);
+	inOrderPrintRec(tree.getRoot(), k, &counter);
 	return counter;
 }
 
 
-void inOrderPrintRec(TreeNode* t, int k)
+void inOrderPrintRec(TreeNode* t, int k, int* counter)
 {
 	if (t == nullptr)
 		return;
-	inOrderPrintRec(t->getLeft(), k);
+	inOrderPrintRec(t->getLeft(), k, counter);
 	if (t->getData().getId() < k)
 	{
 		cout << t->getData() << endl;
-		inOrderPrintRec(t->getRight(), k);
+		inOrderPrintRec(t->getRight(), k, counter);
 	}
 }
 
 int PrintBySort(Person* arr, int n, int k)
 {
 	int counter = 0;
-	counter += quickSort(arr, 0, n - 1);
+	quickSort(arr, 0, n - 1, &counter);
 	for (int i = 0; i < n; i++)
 	{
 		if (arr[i].getId() < k)
@@ -114,15 +116,12 @@ int partition(Person arr[], int low, int high, int* counter)
 	return (i + 1);
 }
 
-int quickSort(Person* arr, int low, int high)
+void quickSort(Person* arr, int low, int high, int* counter)
 {
-	int counter = 0;
 	if (low < high)
 	{
-		int pi = partition(arr, low, high, &counter);
-		quickSort(arr, low, pi - 1);
-		quickSort(arr, pi + 1, high);
-		counter++;
+		int pi = partition(arr, low, high, counter);
+		quickSort(arr, low, pi - 1, counter);
+		quickSort(arr, pi + 1, high, counter);
 	}
-	return counter;
 }

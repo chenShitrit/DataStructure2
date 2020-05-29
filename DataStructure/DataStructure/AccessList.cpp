@@ -56,6 +56,7 @@ void AccessList::addSortedNode(Person& data, int* counter) //to add if the node 
 	if (curr->getNext()->getData().getId() == data.getId())
 	{
 		cout << "The node is already exist!\n";
+		exit(1);
 		return;
 	}
 	newNode->setNext(curr->getNext());

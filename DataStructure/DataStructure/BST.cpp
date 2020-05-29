@@ -30,31 +30,39 @@ BST BST::makeEmpty()
 int BST::insertNode(Person& data)
 {
 	int counter = 0;
-	if (findNode(data.getId(), &counter) != nullptr)
-		cout << "Error, key already exists";
-	TreeNode* newNode = new TreeNode(data);
-	TreeNode* tmp = m_root;
-	TreeNode* parent = nullptr;
-
-	while (tmp != nullptr)
+	counter++;
+	if (m_root == nullptr) //Empty tree
 	{
-		parent = tmp;
-		counter++;
-		if (data.getId() < tmp->getData().getId())
-			tmp = tmp->getLeft();
-		else
-			tmp = tmp->getRight();
+		m_root = new TreeNode(data);
+		return counter;
 	}
-	if (parent == nullptr)
-		m_root = newNode;
+	TreeNode *root, *parent = nullptr;
+	root = m_root;
+	while (root != nullptr)
+	{
+		counter++;
+		if (data.getId() > root->getData().getId())
+		{
+			parent = root;
+			root = root->getRight();
+		}
+		else if (data.getId() < root->getData().getId())
+		{
+			parent = root;
+			root = root->getLeft();
+		}
+		else
+		{
+			cout << "Error, key already exists";
+			exit(1);
+		}
+	}
+	root = new TreeNode(data);
+	if (parent->getData().getId() > data.getId())
+		parent->setLeft(root);
 	else
-	{
-		counter++;
-		if (data.getId() < parent->getData().getId())
-			parent->setLeft(newNode);
-		else
-			parent->setRight(newNode);
-	}
+		parent->setRight(root);
+	counter++;
 	return counter;
 }
 
@@ -99,13 +107,13 @@ void BST::replaceChiledNode(TreeNode* parent, bool isLeft, TreeNode* replaceWith
 
 TreeNode* BST::findMax(TreeNode* t)
 {
-	TreeNode* parent;
+	TreeNode* parent = nullptr;
 	while (t->getRight() != nullptr)
 	{
 		parent = t;
 		t = t->getRight();
 	}
-	parent->setRight(t->getLeft);
+	parent->setRight(t->getLeft());
 	return t;
 }
 
