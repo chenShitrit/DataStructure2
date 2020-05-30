@@ -70,6 +70,7 @@ void inOrderPrintRec(TreeNode* t, int k, int* counter)
 	if (t == nullptr)
 		return;
 	inOrderPrintRec(t->getLeft(), k, counter);
+	(*counter)++;
 	if (t->getData().getId() < k)
 	{
 		cout << t->getData() << endl;

@@ -71,13 +71,16 @@ Person::~Person()
 	delete[] m_lastName;
 }
 
-void Person::operator=(const Person& p)
+void Person::operator=(const Person& other)
 {
-	m_id = p.m_id;
-	delete m_firstName;
-	m_firstName = strdup(p.m_firstName);
-	delete m_lastName;
-	m_lastName = strdup(p.m_lastName);
+	if (this != &other)
+	{
+		delete[]m_firstName;
+		delete[]m_lastName;
+		m_firstName = strdup(other.m_firstName);
+		m_lastName = strdup(other.m_lastName);
+		m_id = other.m_id;
+	}
 }
 
 ostream& operator<<(ostream& os, const Person& p)
