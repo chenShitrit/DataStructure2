@@ -30,9 +30,10 @@ BST BST::makeEmpty()
 int BST::insertNode(Person& data)
 {
 	int counter = 0;
-	counter++;
+	
 	if (m_root == nullptr) //Empty tree
 	{
+		counter++;
 		m_root = new TreeNode(data);
 		return counter;
 	}

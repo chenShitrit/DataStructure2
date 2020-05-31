@@ -84,11 +84,11 @@ int PrintBySort(Person* arr, int n, int k)
 	quickSort(arr, 0, n - 1, &counter);
 	for (int i = 0; i < n; i++)
 	{
-		if (arr[i].getId() < k)
-		{
-			cout << arr[i] << endl;
-		}
 		counter++;
+		if (arr[i].getId() < k)
+			cout << arr[i].getId() << endl;
+		else
+			break;
 	}
 	return counter;
 }
