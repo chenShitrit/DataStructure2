@@ -15,6 +15,7 @@ int PrintBySort(Person* arr, int n, int k);
 void swap(Person* a, Person* b);
 void quickSort(Person* arr, int low, int high, int* counter);
 int partition(Person arr[], int low, int high, int* counter);
+void inputData(int* id, char* firstName, char* lastName)throw(const char*);
 
 void main()
 {
@@ -25,7 +26,15 @@ void main()
 	Person* arr = new Person[coupleNum];
 	for (int i = 0; i < coupleNum; i++)
 	{
-		cin >> id >> firstName >> lastName; //need to check space
+		try
+		{
+			inputData(&id, firstName, lastName);
+		}
+		catch (const char* msg)
+		{
+			cout << msg << endl;
+			exit(1);
+		}
 		arr[i] = Person(id, firstName, lastName);
 	}
 	int k;
@@ -36,6 +45,15 @@ void main()
 	cout << endl << "BST Print: " << counter << " compraison" << endl;
 	counter = PrintBySort(arr, coupleNum, k);
 	cout << endl << "qSortPrint: " << counter << " compraison" << endl;
+	delete[] firstName;
+	delete[] lastName;
+}
+
+void inputData(int* id, char* firstName, char* lastName)throw(const char*)
+{
+	if (!(cin >> *id))
+		throw "Invalid input!";
+	cin >> firstName >> lastName; //need to check space
 }
 
 int naivePrint(Person* arr, int n, int k)
