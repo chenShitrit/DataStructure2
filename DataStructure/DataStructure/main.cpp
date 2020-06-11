@@ -47,13 +47,22 @@ void main()
 	cout << endl << "qSortPrint: " << counter << " compraison" << endl;
 	delete[] firstName;
 	delete[] lastName;
+	system("pause");
 }
 
 void inputData(int* id, char* firstName, char* lastName)throw(const char*)
 {
+	char checkSpace;
 	if (!(cin >> *id))
 		throw "Invalid input!";
-	cin >> firstName >> lastName; //need to check space
+	cin >> firstName;
+	checkSpace = getchar();
+	if (checkSpace != ' ')
+	{
+		cout << "invalid input";
+		exit(1);
+	}
+	cin >> lastName;
 }
 
 int naivePrint(Person* arr, int n, int k)
@@ -81,7 +90,6 @@ int BSTPrint(Person* arr, int n, int k)
 	inOrderPrintRec(tree.getRoot(), k, &counter);
 	return counter;
 }
-
 
 void inOrderPrintRec(TreeNode* t, int k, int* counter)
 {
@@ -124,12 +132,13 @@ int partition(Person arr[], int low, int high, int* counter)
 	int i = (low - 1);
 	for (int j = low; j <= high - 1; j++)
 	{
+		(*counter)++;
 		if (arr[j].getId() <= pivot)
 		{
 			i++;
 			swap(&arr[i], &arr[j]);
 		}
-		(*counter)++;
+		
 	}
 	swap(&arr[i + 1], &arr[high]);
 	return (i + 1);

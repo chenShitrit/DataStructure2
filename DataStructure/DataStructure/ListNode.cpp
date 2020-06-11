@@ -1,12 +1,9 @@
 #include "ListNode.h"
 
 
-//to check
+
 ListNode::ListNode(Person& data): m_data(data)
 {
-	//m_data.setId(data.getId());
-	//m_data.setFirstName(data.getFirstName());
-	//m_data.setLastName(data.getLastName());
 	m_next = nullptr;
 }
 

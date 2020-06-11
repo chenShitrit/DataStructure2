@@ -1,3 +1,5 @@
 ﻿  main.cpp
+c:\users\cshitrit\documents\visual studio 2015\projects\datastructure2\datastructure2\datastructure\datastructure\main.cpp(18): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
+c:\users\cshitrit\documents\visual studio 2015\projects\datastructure2\datastructure2\datastructure\datastructure\main.cpp(53): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
   DataStructure.vcxproj -> C:\Users\cshitrit\Documents\Visual Studio 2015\Projects\DataStructure2\DataStructure2\DataStructure\x64\Debug\DataStructure.exe
   DataStructure.vcxproj -> C:\Users\cshitrit\Documents\Visual Studio 2015\Projects\DataStructure2\DataStructure2\DataStructure\x64\Debug\DataStructure.pdb (Partial PDB)
